@@ -71,7 +71,7 @@ install_node() {
     cd ~/pipe
 
     # Скачиваем файл pop
-    wget https://dl.pipecdn.app/v0.2.2/pop
+    wget https://dl.pipecdn.app/v0.2.3/pop
 
     # Делаем файл исполнимым
     chmod +x pop

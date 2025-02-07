@@ -151,9 +151,6 @@ update_node() {
     sleep 3
     screen -S pipe2 -X stuff "y\n"
 
-    # Проверка статуса pop
-    ./pop --status
-
     echo -e "${GREEN}Обновление завершено!${NC}"
 }
 

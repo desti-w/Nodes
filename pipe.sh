@@ -120,6 +120,27 @@ check_points() {
 
 update_node() {
     echo -e "${BLUE}Обновление до версии 0.2.3...${NC}"
+    # Остановка процесса pop
+    pkill -f pop
+    
+    # Удаление старой версии
+    rm -f ~/pipe/pop
+    
+    # Скачивание новой версии
+    wget -O ~/pipe/pop https://dl.pipecdn.app/v0.2.3/pop
+    
+    # Делаем файл исполнимым
+    chmod +x ~/pipe/pop
+    
+    # Запуск обновления
+    ~/pipe/pop --refresh
+    
+    # Перезапуск screen-сессии с нодой
+    screen -S pipe2 -X quit
+    sleep 2
+    screen -S pipe2 -dm
+
+    sudo systemctl restart pipe-pop && sudo journalctl -u pipe-pop -f --no-hostname -o cat
     echo -e "${GREEN}Обновление завершено!${NC}"
 }
 

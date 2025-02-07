@@ -123,7 +123,7 @@ update_node() {
 
     # Остановка процесса pop
     echo -e "${YELLOW}Останавливаем службу pipe-pop...${NC}"
-    sudo systemctl stop pipe-pop
+    ps aux | grep '[p]op' | awk '{print $2}' | xargs kill
 
     # Переход в директорию pipe
     cd ~/pipe
@@ -142,18 +142,14 @@ update_node() {
     # Перезагрузка системных служб
     sudo systemctl daemon-reload
 
-    # Перезапуск службы pipe-pop
-    sudo systemctl restart pipe-pop
-
     # Завершаем сессию screen с именем 'pipe2', если она существует
     screen -S pipe2 -X quit
     sleep 2
 
     # Перезапуск сессии screen с именем 'pipe2' и запуск pop
     screen -S pipe2 -dm ./pop
-
-    # Просмотр логов службы
-    journalctl -u pipe-pop -f
+    sleep 3
+    screen -S pipe2 -X stuff "y\n"
 
     # Проверка статуса pop
     ./pop --status

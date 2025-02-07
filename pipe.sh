@@ -120,27 +120,44 @@ check_points() {
 
 update_node() {
     echo -e "${BLUE}Обновление до версии 0.2.3...${NC}"
+
     # Остановка процесса pop
-    pkill -f pop
-    
-    # Удаление старой версии
-    rm -f ~/pipe/pop
-    
-    # Скачивание новой версии
-    wget -O ~/pipe/pop https://dl.pipecdn.app/v0.2.3/pop
-    
+    echo -e "${YELLOW}Останавливаем службу pipe-pop...${NC}"
+    sudo systemctl stop pipe-pop
+
+    # Переход в директорию pipe
+    cd ~/pipe
+
+    # Удаление старой версии pop
+    echo -e "${YELLOW}Удаляем старую версию pop...${NC}"
+    rm -f pop
+
+    # Скачивание новой версии pop
+    echo -e "${YELLOW}Скачиваем новую версию pop...${NC}"
+    wget -O pop "https://dl.pipecdn.app/v0.2.3/pop"
+
     # Делаем файл исполнимым
-    chmod +x ~/pipe/pop
-    
-    # Запуск обновления
-    ~/pipe/pop --refresh
-    
-    # Перезапуск screen-сессии с нодой
+    chmod +x pop
+
+    # Перезагрузка системных служб
+    sudo systemctl daemon-reload
+
+    # Перезапуск службы pipe-pop
+    sudo systemctl restart pipe-pop
+
+    # Завершаем сессию screen с именем 'pipe2', если она существует
     screen -S pipe2 -X quit
     sleep 2
-    screen -S pipe2 -dm
 
-    sudo systemctl restart pipe-pop && sudo journalctl -u pipe-pop -f --no-hostname -o cat
+    # Перезапуск сессии screen с именем 'pipe2' и запуск pop
+    screen -S pipe2 -dm ./pop
+
+    # Просмотр логов службы
+    journalctl -u pipe-pop -f
+
+    # Проверка статуса pop
+    ./pop --status
+
     echo -e "${GREEN}Обновление завершено!${NC}"
 }
 

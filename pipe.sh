@@ -148,7 +148,7 @@ update_node() {
 
     # Перезапуск сессии screen с именем 'pipe2' и запуск pop
     screen -S pipe2 -dm ./pop
-    sleep 3
+    sleep 10
     screen -S pipe2 -X stuff "y\n"
 
     echo -e "${GREEN}Обновление завершено!${NC}"

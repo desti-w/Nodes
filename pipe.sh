@@ -144,7 +144,7 @@ update_node() {
 
     # Завершаем сессию screen с именем 'pipe2', если она существует
     screen -S pipe2 -X quit
-    sleep 2
+    sleep 5
 
     # Перезапуск сессии screen с именем 'pipe2' и запуск pop
     screen -S pipe2 -dm ./pop

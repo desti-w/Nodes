@@ -71,7 +71,7 @@ install_node() {
     cd ~/pipe
 
     # Скачиваем файл pop
-    wget https://dl.pipecdn.app/v0.2.3/pop
+    wget https://dl.pipecdn.app/v0.2.4/pop
 
     # Делаем файл исполнимым
     chmod +x pop
@@ -141,20 +141,18 @@ update_node() {
 
     # Перезагрузка системных служб
     sudo systemctl daemon-reload
-    echo "test1"
     # Завершаем сессию screen с именем 'pipe2', если она существует
     if screen -list | grep -q "pipe2"; then
     screen -S pipe2 -X quit
-    echo "test2"
     fi
     sleep 2
-    echo "test3"
+    
     # Перезапуск сессии screen с именем 'pipe2' и запуск pop
     screen -S pipe2 -dm ./pop
-    echo "test4"
+    
     sleep 5
     screen -S pipe2 -X stuff "y\n"
-    echo "test5"
+    
     echo -e "${GREEN}Обновление завершено!${NC}"
 }
 

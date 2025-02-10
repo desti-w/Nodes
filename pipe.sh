@@ -143,12 +143,13 @@ update_node() {
     sudo systemctl daemon-reload
 
     # Завершаем сессию screen с именем 'pipe2', если она существует
+    if screen -list | grep -q "pipe2"; then
     screen -S pipe2 -X quit
-    sleep 5
-
+    fi
+    sleep 2
     # Перезапуск сессии screen с именем 'pipe2' и запуск pop
     screen -S pipe2 -dm ./pop
-    sleep 10
+    sleep 5
     screen -S pipe2 -X stuff "y\n"
 
     echo -e "${GREEN}Обновление завершено!${NC}"

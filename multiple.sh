@@ -29,7 +29,7 @@ echo "Добро пожаловать! Начинаем установку не�
 echo ""
 echo "Gentleman - https://t.me/GentleChron"
 echo "Wesna - https://t.me/softs_by_wesna"
-echo "Desti.w 55 - https://t.me/softs_by_wesna"
+echo "Desti.w 555 - https://t.me/softs_by_wesna"
 echo "===================================================================================================================================="
 
 echo ""

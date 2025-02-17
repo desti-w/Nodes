@@ -29,7 +29,7 @@ echo "Добро пожаловать! Начинаем установку не�
 echo ""
 echo "Gentleman - https://t.me/GentleChron"
 echo "Wesna - https://t.me/softs_by_wesna"
-echo "Desti.w 4 - https://t.me/softs_by_wesna"
+echo "Desti.w 5 - https://t.me/softs_by_wesna"
 echo "===================================================================================================================================="
 
 echo ""
@@ -94,7 +94,7 @@ install_node() {
     read PIN
 
     # Привязка аккаунта
-    ./multiple-cli bind --bandwidth-download 12207 --identifier $IDENTIFIER --pin $PIN --storage 1048576 --bandwidth-upload 12207
+    ./multiple-cli bind --bandwidth-download 12207 --identifier $IDENTIFIER --pin $PIN --storage 2097152 --bandwidth-upload 12207
 
     # Проверка статуса
     cd ~/multipleforlinux && ./multiple-cli status

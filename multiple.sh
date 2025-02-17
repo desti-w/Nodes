@@ -94,7 +94,7 @@ install_node() {
     read PIN
 
     # Привязка аккаунта
-    ./multiple-cli bind --bandwidth-download 1000 --identifier $IDENTIFIER --pin $PIN --storage 2000 --bandwidth-upload 1000
+    ./multiple-cli bind --bandwidth-download 200 --identifier $IDENTIFIER --pin $PIN --storage 200 --bandwidth-upload 200
 
     # Проверка статуса
     cd ~/multipleforlinux && ./multiple-cli status
